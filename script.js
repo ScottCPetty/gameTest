@@ -363,4 +363,3 @@ generateDungeon();
 drawPlayer();
 updateGameInfo();
 updateEnemyInfo();
-//
