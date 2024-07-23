@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dungeon Crawler Game</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="game-container">
+      <canvas id="gameCanvas" width="400" height="400"></canvas>
+      <div id="sidebar">
+        <div id="stats-window">
+          <h3>Stats</h3>
+          <div id="hp-bar-container">
+            <div id="hp-bar"></div>
+          </div>
+          <p>
+            HP: <span id="current-hp">100</span> / <span id="max-hp">100</span>
+          </p>
+          <p>
+            XP: <span id="current-xp">0</span> / <span id="needed-xp">50</span>
+          </p>
+          <p>Level: <span id="current-level">1</span></p>
+          <p>Potions[p]: <span id="current-potions">0</span></p>
+          <p>Attack[space]: <span id="attack-range">2-12</span></p>
+          <p>Dodge Chance: <span id="dodge-chance">0%</span></p>
+        </div>
+        <div id="enemy-info">
+          <p>Enemy: <span id="enemy-name">None</span></p>
+          <p>Enemy HP: <span id="enemy-hp">N/A</span></p>
+        </div>
+        <div id="combat-log">
+          <h3>Combat Log</h3>
+          <ul id="log"></ul>
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
