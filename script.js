@@ -284,7 +284,9 @@ function attackEnemy() {
     addCombatLog(`You dodged the ${currentEnemy.name}'s attack!`);
   } else {
     player.hp -= enemyDamage;
-    addCombatLog(`The ${currentEnemy.name} dealt ${enemyDamage} damage to you.`);
+    addCombatLog(
+      `The ${currentEnemy.name} dealt ${enemyDamage} damage to you.`
+    );
   }
 
   if (player.hp <= 0) {
@@ -361,3 +363,4 @@ generateDungeon();
 drawPlayer();
 updateGameInfo();
 updateEnemyInfo();
+//
