@@ -1,8 +1,8 @@
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
-const tileSize = 5; // Reduced tile size to fit the 80x80 dungeon
-const tilesX = 80;
-const tilesY = 80;
+const tileSize = 25; // Reduced tile size to fit the 80x80 dungeon
+const tilesX = 25;
+const tilesY = 25;
 canvas.width = tilesX * tileSize;
 canvas.height = tilesY * tileSize;
 
@@ -24,10 +24,10 @@ let attackMade = false;
 
 const enemyAttributes = {
   MiniGob: { xp: 5, hp: 15, damageMin: 1, damageMax: 6 },
-  WizardKid: { xp: 10, hp: 15, damageMin: 2, damageMax: 8 },
+  WizKid: { xp: 10, hp: 15, damageMin: 2, damageMax: 8 },
   Rat: { xp: 3, hp: 5, damageMin: 1, damageMax: 4 },
-  Mongrol: { xp: 15, hp: 12, damageMin: 3, damageMax: 9 },
-  Mongol: { xp: 20, hp: 34, damageMin: 4, damageMax: 9 },
+  Mongrel: { xp: 15, hp: 12, damageMin: 3, damageMax: 9 },
+  Goblin: { xp: 20, hp: 34, damageMin: 4, damageMax: 9 },
   "Lil' Tommy": { xp: 25, hp: 16, damageMin: 5, damageMax: 12 },
 };
 
