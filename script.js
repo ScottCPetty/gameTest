@@ -17,6 +17,7 @@ let player = {
   damageMin: 2,
   damageMax: 12,
   dodge: 0,
+  savedPoints: 0,
 };
 let currentEnemy = null;
 let steps = 0;
@@ -133,6 +134,15 @@ function updateGameInfo() {
   const hpBar = document.getElementById("hp-bar");
   const hpPercent = (player.hp / player.maxHp) * 100;
   hpBar.style.width = `${hpPercent}%`;
+
+  // Update Saved Points line
+  const savedPointsLine = document.getElementById("saved-points-line");
+  if (player.savedPoints > 0) {
+    savedPointsLine.style.display = "block";
+    document.getElementById("unspent-points").innerText = player.savedPoints;
+  } else {
+    savedPointsLine.style.display = "none";
+  }
 }
 
 function updateEnemyInfo() {
@@ -182,7 +192,8 @@ function movePlayer(dx, dy) {
     player.y = newY;
     steps++;
     if (newX === entranceX && newY === entranceY) {
-      alert("You found the entrance to the next floor!");
+      player.xp += 50;
+      addCombatLog("You found the entrance to the next floor!");
       // Handle moving to the next floor
       // For simplicity, just reset the player's position and generate a new dungeon
       player.x = 0;
@@ -319,6 +330,9 @@ function levelUpCheck() {
       } else if (choice.toLowerCase() == "dod") {
         player.dodge += 5;
         points--;
+      } else if (choice.toLowerCase() == "save") {
+        player.savedPoints += points;
+        points = 0;
       } else {
         alert("Invalid choice");
       }
@@ -326,6 +340,39 @@ function levelUpCheck() {
     updateGameInfo();
     levelUpCheck(); // Check again in case the player has enough XP to level up again
   }
+}
+
+function useSavedPoints() {
+  let points = player.savedPoints;
+  while (points > 0) {
+    let choice = prompt(
+      `You have ${points} saved points. Choose to increase HP, DMG, or DOD.`
+    );
+    if (choice.toLowerCase() == "hp") {
+      player.maxHp += 5;
+      player.hp += 5; // Increase current HP as well
+      points--;
+    } else if (choice.toLowerCase() == "dmg") {
+      player.damageMin++;
+      player.damageMax++;
+      points--;
+    } else if (choice.toLowerCase() == "dod") {
+      player.dodge += 5;
+      points--;
+    } else if (choice.toLowerCase() == "god") {
+      player.maxHp = 1000;
+      player.hp = 1000;
+      player.damageMin = 100;
+      player.damageMax = 100;
+      player.dodge = 100;
+      player.potions = 100;
+      points--;
+    } else {
+      alert("Invalid choice");
+    }
+  }
+  player.savedPoints = 0; // Reset saved points after use
+  updateGameInfo();
 }
 
 function resetGame() {
@@ -357,6 +404,7 @@ document.addEventListener("keydown", (e) => {
   if (e.key === "d") movePlayer(1, 0);
   if (e.key === "e") usePotion();
   if (e.key === " ") attackEnemy();
+  if (e.key === "p") useSavedPoints();
 });
 
 generateDungeon();
