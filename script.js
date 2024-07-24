@@ -174,6 +174,11 @@ function addCombatLog(message) {
     entries[i].classList.remove("new-attack-entry");
   }
 
+  // Limit the log to 100 entries
+  while (log.children.length > 100) {
+    log.removeChild(log.lastChild);
+  }
+
   attackMade = false;
 }
 
@@ -250,7 +255,7 @@ function usePotion() {
     updateGameInfo();
     addCombatLog("Used a potion and restored 20 HP.");
   } else {
-    alert("No potions left!");
+    addCombatLog("You don't have any potions!");
   }
 }
 
