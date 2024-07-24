@@ -314,7 +314,7 @@ function levelUpCheck() {
   if (player.xp >= requiredXp) {
     player.level++;
     player.xp -= requiredXp; // Remove the XP required for the level up
-    let points = 2;
+    let points = 1;
     while (points > 0) {
       let choice = prompt(
         `You leveled up! You have ${points} points to spend. Choose to increase HP, DMG, or DOD.`
@@ -398,10 +398,10 @@ function resetGame() {
 }
 
 document.addEventListener("keydown", (e) => {
-  if (e.key === "w") movePlayer(0, -1);
-  if (e.key === "s") movePlayer(0, 1);
-  if (e.key === "a") movePlayer(-1, 0);
-  if (e.key === "d") movePlayer(1, 0);
+  if (e.key === "w" || e.code === "ArrowUp") movePlayer(0, -1);
+  if (e.key === "s" || e.code === "ArrowDown") movePlayer(0, 1);
+  if (e.key === "a" || e.code === "ArrowLeft") movePlayer(-1, 0);
+  if (e.key === "d" || e.code === "ArrowRight") movePlayer(1, 0);
   if (e.key === "e") usePotion();
   if (e.key === " ") attackEnemy();
   if (e.key === "p") useSavedPoints();
