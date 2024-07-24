@@ -306,17 +306,17 @@ function levelUpCheck() {
     let points = 2;
     while (points > 0) {
       let choice = prompt(
-        `You leveled up! You have ${points} points to spend. Choose to increase HP, DMG, or DOG.`
+        `You leveled up! You have ${points} points to spend. Choose to increase HP, DMG, or DOD.`
       );
-      if (choice.toLowerCase() === "hp") {
+      if (choice.toLowerCase() == "hp") {
         player.maxHp += 5;
         player.hp += 5; // Increase current HP as well
         points--;
-      } else if (choice.toLowerCase() === "dmg") {
+      } else if (choice.toLowerCase() == "dmg") {
         player.damageMin++;
         player.damageMax++;
         points--;
-      } else if (choice.toLowerCase() === "dog") {
+      } else if (choice.toLowerCase() == "dod") {
         player.dodge += 5;
         points--;
       } else {
@@ -355,7 +355,7 @@ document.addEventListener("keydown", (e) => {
   if (e.key === "s") movePlayer(0, 1);
   if (e.key === "a") movePlayer(-1, 0);
   if (e.key === "d") movePlayer(1, 0);
-  if (e.key === "p") usePotion();
+  if (e.key === "e") usePotion();
   if (e.key === " ") attackEnemy();
 });
 
